@@ -26,6 +26,32 @@ using namespace std;
     
     Unordered_ multimap : it's like unordered map the only difference is unordered 
     multimaps can store duplicate elements.
+
+    * Prints output in the random order.
+    * Allows duplicate values i.e multiple values for same 'key'
+    * erase("key") , will delete all elements with the 'key' value passed in the erase()
+    
+    eg. unordered_multimap<string,int>um;
+
+        um.insert({"kunal",3});
+        um.insert({"Yash",5});
+        um.insert({"Yash",9});
+
+        ==> output will look like : 
+
+        kunal -> 3
+        Yash  -> 5
+        Yash  -> 9
+
+        ==> performing erase('key')
+
+        um.erase("Yash");
+
+        ==> output will look like : 
+
+        kunal -> 3
+        
+        both elements with key == 'Yash' will be erased.
     
 
 */
@@ -46,13 +72,31 @@ int main()
     unordered_multimap<string,int>um;
 
     // 2. assigning values
-    um.insert({"Kunal",5});
-    um.emplace(make_pair("Yash",4));
-    um.insert({"kannu",2});
-    // um.insert({"kannu",1})
+    um.insert({"kunal",5});
+    um.insert({"Yash",2});
+    um.emplace(make_pair("Ankit",7));
+    um.insert({"Yash",52}); // duplicate value storing attempt
+    
+    // um["nitin"] = 12;   Not a valid operator
+     um.insert({"kannu",1});
 
     // 3. Traversing map
       printMap(um);
+
+    // 4. functions 
+
+     /*
+         um.begin();
+        um.end();
+        um.find("kunal");
+        um.size();
+        um.clear();
+        um.empty();
+        
+     */  
+
+    um.erase("Yash");
+    printMap(um);
 
 
   
